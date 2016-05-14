@@ -45,16 +45,24 @@
     .name {
     	font-weight: bold;
     }
+
+    #logo {
+    	float: right;
+    	margin-right: 200px;
+    }
     </style>
   </head>
-  <body background="escheresque_ste.png">
-    <h1 class="title">Game Mods</h1><h2 class="title">Minecraft 1.9</h2>
+  <body background="Micon_Cover_logos.jpg">
+    <h1 class="title">Game Mods</h1>
     <div id="favorites-box">
     	<h2>favorites</h2>
     	<ul id="favorites">
     		
     	</ul>
     </div>
+    <!-- <img id=logo src="Micon_Cover_logos.jpg" /> -->
+
+
 
   
 
@@ -62,18 +70,23 @@
     <script src="jquery-1.12.3.min.js"></script>
     <script type="text/javascript">
     	
-    	$.getJSON( "http://modlist.mcf.li/api/v3/1.9.json", function( data ) {
-    	  window.data = data;
-		  window.items = [];
-		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank' class= 'name'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#' class='add'>Add Favorite</a><br>" + val.desc + "</li>" );
-		  });
-		 
-		  $( "<ul/>", {
-		    "class": "my-new-list",
-		    html: window.items.join( "" )
-		  }).appendTo( "body" );
-		});
+    	var addMod = function(version) {
+    		$.getJSON( "http://modlist.mcf.li/api/v3/" + version + ".json", function( data ) {
+    	    	  window.data = data;
+    			  window.items = [];
+    			  $.each( data, function( key, val ) {
+    			    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank' class= 'name'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#' class='add'>Add Favorite</a><br>" + val.desc + "</li>" );
+    			  });
+    			 
+    			  $("<h2 class='title'>Minecraft " +version + "</h2>").appendTo( "body" );
+    			  $( "<ul/>", {
+    			    "class": "my-new-list",
+    			    html: window.items.join( "" )
+    			  }).appendTo( "body" );
+    			});
+    	}
+    	addMod("1.9");
+    	addMod("1.8");
 		
 		var addfavorite = function(id) {
 			var item = data[id];
