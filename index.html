@@ -8,9 +8,22 @@
     <title>Modd</title><link rel="icon" 
       type="image/jpg" 
       href="Micon_Cover_logos.jpg">
+    <style>
+    #favorites-box {
+    	border: 1px solid red;
+    	width: 200px;
+    	float: right;
+    }
+    </style>
   </head>
   <body background="asanoha-400px.png">
     <h1>Game Mods</h1>
+    <div id="favorites-box">
+    	<h2>favorites</h2>
+    	<ul id="favorites">
+    		
+    	</ul>
+    </div>
 
   
 
@@ -19,16 +32,24 @@
     <script type="text/javascript">
     	
     	$.getJSON( "http://modlist.mcf.li/api/v3/1.9.json", function( data ) {
-		  var items = [];
+    	  window.data = data;
+		  window.items = [];
 		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a><br>" + val.desc + "</li>" );
+		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#''>Add Favorite</a><br>" + val.desc + "</li>" );
 		  });
 		 
 		  $( "<ul/>", {
 		    "class": "my-new-list",
-		    html: items.join( "" )
+		    html: window.items.join( "" )
 		  }).appendTo( "body" );
 		});
+		
+		var addfavorite = function(id) {
+			var item = data[id];
+			console.log(item);
+			$("#favorites").append("<li>    <a href='" + item.link + "' target='_blank'>" + item.name + "</a>    </li>");
+		};
+
     </script>
   </body>
 </html>
