@@ -21,7 +21,7 @@
     	$.getJSON( "http://modlist.mcf.li/api/v3/1.9.json", function( data ) {
 		  var items = [];
 		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'><a href='" + val.link + "'>" + val.name + "</a><br>" + val.desc + "</li>" );
+		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a><br>" + val.desc + "</li>" );
 		  });
 		 
 		  $( "<ul/>", {
