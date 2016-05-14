@@ -8,9 +8,14 @@
     <title>Modd</title><link rel="icon" 
       type="image/jpg" 
       href="Micon_Cover_logos.jpg">
+      <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <style>
+    body {
+    	font-family: minecrafterregular;
+    }
+
     #favorites-box {
-    	border: 1px solid red;
+    	border: 1px solid blue;
     	width: 400px;
     	float: right;
     	background: white;
@@ -32,10 +37,18 @@
     ul {
     	list-style: none;
     }
+
+    .title {
+    	color: white;
+    }
+
+    .name {
+    	font-weight: bold;
+    }
     </style>
   </head>
-  <body background="asanoha-400px.png">
-    <h1>Game Mods</h1>
+  <body background="escheresque_ste.png">
+    <h1 class="title">Game Mods</h1><h2 class="title">Minecraft 1.9</h2>
     <div id="favorites-box">
     	<h2>favorites</h2>
     	<ul id="favorites">
@@ -53,7 +66,7 @@
     	  window.data = data;
 		  window.items = [];
 		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#' class='add'>Add Favorite</a><br>" + val.desc + "</li>" );
+		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank' class= 'name'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#' class='add'>Add Favorite</a><br>" + val.desc + "</li>" );
 		  });
 		 
 		  $( "<ul/>", {
