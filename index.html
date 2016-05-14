@@ -11,8 +11,26 @@
     <style>
     #favorites-box {
     	border: 1px solid red;
-    	width: 200px;
+    	width: 400px;
     	float: right;
+    	background: white;
+    	padding: 10px;
+    }
+
+    li {
+    	border: 1px solid blue;
+    	width: 300px;
+    	margin-bottom: 10px;
+    	padding: 10px;
+    	background: white;
+    }
+
+    .add {
+    	float: right;
+    }
+
+    ul {
+    	list-style: none;
     }
     </style>
   </head>
@@ -35,7 +53,7 @@
     	  window.data = data;
 		  window.items = [];
 		  $.each( data, function( key, val ) {
-		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#''>Add Favorite</a><br>" + val.desc + "</li>" );
+		    items.push( "<li id='" + key + "'><a href='" + val.link + "' target='_blank'>" + val.name + "</a>    <a onclick='addfavorite(" + key + ")' href='#' class='add'>Add Favorite</a><br>" + val.desc + "</li>" );
 		  });
 		 
 		  $( "<ul/>", {
